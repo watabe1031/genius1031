@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>野村不動産 採用情報インタラクティブガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f5f2;
+            color: #44403c;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #d97706;
+            border-bottom-color: #d97706;
+        }
+        .tab-button.active {
+            background-color: #d97706;
+            color: white;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-button.open + .accordion-content {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-stone-800">野村不動産 | Interactive Guide</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#philosophy" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">企業理念</a>
+                        <a href="#strengths" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">事業の強み</a>
+                        <a href="#future" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">未来への挑戦</a>
+                        <a href="#candidate" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">ESヒント</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500">
+                        <option value="#home">ホーム</option>
+                        <option value="#philosophy">企業理念</option>
+                        <option value="#strengths">事業の強み</option>
+                        <option value="#future">未来への挑戦</option>
+                        <option value="#candidate">ESヒント</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section class="bg-white pt-16 pb-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-base font-semibold text-amber-600 tracking-wide uppercase">Nomura Real Estate Development</h2>
+                <p class="mt-2 text-3xl font-extrabold text-stone-900 tracking-tight sm:text-4xl">未来（あした）につながる街づくりを、あなたと。</p>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-stone-600">このガイドは、野村不動産のインターンシップ・エントリーシート作成をサポートするためのインタラクティブな情報ハブです。企業の本質を深く理解し、あなたの経験と結びつけるヒントを見つけましょう。</p>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-stone-800 mb-4">私たちの約束：企業理念と事業</h3>
+                    <p class="max-w-3xl mx-auto text-stone-600 mb-12">野村不動産の原動力は、社会に向けて新たな価値を創造し続けるという約束にあります。ここでは、その理念がどのように事業として具体化されているのかを概観します。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h4 class="text-xl font-bold text-amber-700 mb-4">企業理念</h4>
+                        <p class="text-stone-700 mb-6 font-medium">「私たちは、人、街が大切にしているものを活かし 未来（あした）につながる街づくりとともに 豊かな時を人びとと共に育み 社会に向けて、新たな価値を創造し続けます。」</p>
+                        <h5 class="font-bold text-stone-800 mb-2">5つの行動指針</h5>
+                        <ul class="space-y-2 text-stone-600">
+                            <li class="flex items-start"><span class="text-amber-600 mr-2 font-bold">1.</span> <span>お客様第一の精神</span></li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2 font-bold">2.</span> <span>独創的発想による新たな価値創造</span></li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2 font-bold">3.</span> <span>挑戦者であり続ける姿勢</span></li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2 font-bold">4.</span> <span>社会と共に成長していく自覚</span></li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2 font-bold">5.</span> <span>活き活きと働くウェルネスの実現</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h4 class="text-xl font-bold text-amber-700 mb-4">多角的な事業展開</h4>
+                        <p class="text-stone-700 mb-6">中核である住宅事業「PROUD」を軸に、人々の生活のあらゆる場面に寄り添うため、事業領域を拡大し続けています。</p>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="p-4 bg-amber-50 rounded-md"><h6 class="font-semibold text-amber-800">住宅事業</h6><p class="text-sm text-amber-700">PROUD</p></div>
+                            <div class="p-4 bg-stone-100 rounded-md"><h6 class="font-semibold text-stone-800">オフィス</h6></div>
+                            <div class="p-4 bg-stone-100 rounded-md"><h6 class="font-semibold text-stone-800">商業施設</h6></div>
+                            <div class="p-4 bg-stone-100 rounded-md"><h6 class="font-semibold text-stone-800">ホテル</h6></div>
+                            <div class="p-4 bg-stone-100 rounded-md"><h6 class="font-semibold text-stone-800">物流施設</h6></div>
+                            <div class="p-4 bg-stone-100 rounded-md"><h6 class="font-semibold text-stone-800">海外事業</h6></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strengths" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-stone-800 mb-4">事業の強み：3つの視点</h3>
+                    <p class="max-w-3xl mx-auto text-stone-600 mb-12">野村不動産の強みは単なる開発力に留まりません。ここでは、顧客、地域、そして地球環境という3つの視点から、同社がどのように価値を創造しているのか、具体的なプロジェクトを通じて探ります。</p>
+                </div>
+                
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="mb-4 flex space-x-2 md:space-x-4 p-1 bg-stone-200 rounded-lg justify-center">
+                        <button class="tab-button flex-1 text-sm md:text-base py-2 px-4 rounded-md font-semibold transition active" data-tab="tab1">顧客視点</button>
+                        <button class="tab-button flex-1 text-sm md:text-base py-2 px-4 rounded-md font-semibold transition" data-tab="tab2">地域共生</button>
+                        <button class="tab-button flex-1 text-sm md:text-base py-2 px-4 rounded-md font-semibold transition" data-tab="tab3">サステナビリティ</button>
+                    </div>
+
+                    <div id="tab1" class="tab-content p-6 bg-stone-50 rounded-lg">
+                        <h4 class="text-2xl font-bold text-stone-800 mb-3">マーケットインの発想</h4>
+                        <p class="text-stone-600 mb-4">独立系デベロッパーの強みを活かし、顧客の声をダイレクトに商品開発へ反映。お客様の「欲しかった暮らし」を徹底的に追求します。</p>
+                        <div class="bg-white p-4 rounded-md border border-stone-200">
+                            <h5 class="font-bold text-amber-700">事例：プラウド横浜新子安</h5>
+                            <p class="text-stone-700 mt-1">顧客アンケートを基に、浴室ドアの換気口の位置を足元に変更。掃除のしやすさといった細部にまでこだわり、日々の快適性を向上させました。</p>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab-content hidden p-6 bg-stone-50 rounded-lg">
+                        <h4 class="text-2xl font-bold text-stone-800 mb-3">地域共生型の街づくり</h4>
+                        <p class="text-stone-600 mb-4">単なる建物開発ではなく、地域の課題解決に貢献する「BE UNITED構想」。街の未来を、地域と共に創ります。</p>
+                         <div class="bg-white p-4 rounded-md border border-stone-200">
+                            <h5 class="font-bold text-amber-700">事例：亀戸プロジェクト</h5>
+                            <p class="text-stone-700 mt-1">計画段階から地域住民と対話を重ね、商業施設や保育施設を誘致。街全体の生活利便性を高め、多世代が交流する拠点となりました。</p>
+                        </div>
+                    </div>
+                    <div id="tab3" class="tab-content hidden p-6 bg-stone-50 rounded-lg">
+                         <h4 class="text-2xl font-bold text-stone-800 mb-3">先進的な環境配慮</h4>
+                        <p class="text-stone-600 mb-4">未来の世代のために、持続可能な社会の実現を目指します。ハード（建物）とソフト（暮らし）の両面からアプローチします。</p>
+                         <div class="bg-white p-4 rounded-md border border-stone-200">
+                            <h5 class="font-bold text-amber-700">事例：BLUE FRONT SHIBAURA</h5>
+                            <p class="text-stone-700 mt-1">街区全体でのCO2排出量実質ゼロを目指すフラッグシップ。太陽光発電や未利用エネルギーである運河水を利用した地域冷暖房システムを導入しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center">
+                    <h3 class="text-3xl font-bold text-stone-800 mb-4">未来への挑戦：Life & Time Developerへ</h3>
+                    <p class="max-w-3xl mx-auto text-stone-600 mb-12">2030年ビジョン「まだ見ぬ、Life & Time Developerへ」を掲げ、モノ（ハード）だけでなく、コト（ソフト）の価値創造を目指しています。ここでは、その象徴的な取り組みと事業の広がりを紹介します。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold text-stone-800 mb-4">資源循環の実現：「つなぐ森」</h4>
+                        <p class="text-stone-600 mb-6">奥多摩の社有林で育成した木材を自社物件で活用する「地産地消」の取り組み。森を育て、活かし、未来へつなぐ。サステナブルな資源循環を推進しています。</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                                <div class="flex-shrink-0 bg-amber-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold">1</div>
+                                <p class="ml-4 font-semibold text-stone-700">育成：奥多摩の森を管理・育成</p>
+                            </div>
+                            <div class="text-center text-2xl text-stone-400">↓</div>
+                             <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                                <div class="flex-shrink-0 bg-amber-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold">2</div>
+                                <p class="ml-4 font-semibold text-stone-700">活用：育成した木材を自社物件の内装などに利用</p>
+                            </div>
+                             <div class="text-center text-2xl text-stone-400">↓</div>
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-sm">
+                                <div class="flex-shrink-0 bg-amber-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold">3</div>
+                                <p class="ml-4 font-semibold text-stone-700">循環：売上の一部を森林保全活動へ還元</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-stone-800 mb-4 text-center">多様な事業ポートフォリオ</h4>
+                         <p class="text-stone-600 mb-6 text-center">住宅事業を中核としながらも、様々な事業を有機的に連携させ、総合的な街づくりを推進しています。</p>
+                        <div class="chart-container">
+                            <canvas id="businessChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="candidate" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center">
+                    <h3 class="text-3xl font-bold text-stone-800 mb-4">求める人物像とESヒント</h3>
+                    <p class="max-w-3xl mx-auto text-stone-600 mb-12">野村不動産が求めるのは、どのような人物でしょうか。ここでは、3つのキーワードを挙げ、それぞれについて、あなたの経験を効果的にアピールするためのヒントを提示します。クリックして詳細を確認してください。</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="border border-stone-200 rounded-lg">
+                        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-stone-50 hover:bg-stone-100 focus:outline-none">
+                            <span class="text-lg font-semibold text-stone-800">1. 主体的に行動できる人材</span>
+                            <span class="text-amber-600 transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content bg-white px-5 pb-5">
+                            <div class="pt-4 border-t border-stone-200">
+                                <h5 class="font-bold text-amber-700 mb-2">ESでのアピールポイント</h5>
+                                <p class="text-stone-600">「顧客視点」をアピールしましょう。例えば、アルバイト経験でのお客様との対話からニーズを汲み取り、自ら改善提案を行ったエピソードなど。指示を待つのではなく、自ら課題を発見し行動した経験が光ります。</p>
+                                <p class="mt-2 text-sm text-stone-500">例：「お客様の『こんな商品が欲しい』という声から、新メニューを考案し、売上向上に貢献しました。」</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="border border-stone-200 rounded-lg">
+                        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-stone-50 hover:bg-stone-100 focus:outline-none">
+                            <span class="text-lg font-semibold text-stone-800">2. 周囲を巻き込み課題解決できる人材</span>
+                             <span class="text-amber-600 transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content bg-white px-5 pb-5">
+                             <div class="pt-4 border-t border-stone-200">
+                                <h5 class="font-bold text-amber-700 mb-2">ESでのアピールポイント</h5>
+                                <p class="text-stone-600">「地域課題解決への関心」を示しましょう。学業やサークル活動などで、チームで一つの目標に向かい、地域のイベントを企画したり、問題解決に取り組んだりした経験。多様なステークホルダーと協働する力が求められます。</p>
+                                <p class="mt-2 text-sm text-stone-500">例：「建築学科の学びを通じ、建物のデザインだけでなく、それが地域社会に与える影響を常に考えてきました。」</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="border border-stone-200 rounded-lg">
+                        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-stone-50 hover:bg-stone-100 focus:outline-none">
+                            <span class="text-lg font-semibold text-stone-800">3. 人々の想いに真摯に向き合える人材</span>
+                             <span class="text-amber-600 transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content bg-white px-5 pb-5">
+                             <div class="pt-4 border-t border-stone-200">
+                                <h5 class="font-bold text-amber-700 mb-2">ESでのアピールポイント</h5>
+                                <p class="text-stone-600">「目標達成意欲と継続力」を具体的に語りましょう。スポーツや研究、趣味など、高い目標を掲げて長期間努力し続けた経験。その過程での困難や、それをどう乗り越えたかを語ることで、粘り強さと誠実さが伝わります。</p>
+                                 <p class="mt-2 text-sm text-stone-500">例：「フィジーク大会出場という目標に向け、1年間の厳しいトレーニングと食事管理を継続し、目標を達成しました。」</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-white">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Interactive Guide for Nomura Real Estate Development Applicants.</p>
+            <p class="text-stone-400 mt-1">This is a conceptual tool based on publicly available information for application support purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chartCtx = document.getElementById('businessChart').getContext('2d');
+            const businessChart = new Chart(chartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['住宅事業', 'オフィス事業', '商業施設事業', '物流施設事業', 'その他（ホテル・海外等）'],
+                    datasets: [{
+                        label: '事業ポートフォリオ',
+                        data: [40, 25, 15, 10, 10],
+                        backgroundColor: [
+                            '#fbbf24', // amber-400
+                            '#f59e0b', // amber-500
+                            '#d97706', // amber-600
+                            '#b45309', // amber-700
+                            '#92400e'  // amber-800
+                        ],
+                        borderColor: '#f8f5f2',
+                        borderWidth: 3,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#44403c',
+                                font: {
+                                    size: 12,
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = document.getElementById(tab.dataset.tab);
+                    tabContents.forEach(content => content.classList.add('hidden'));
+                    target.classList.remove('hidden');
+                });
+            });
+
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const currentlyOpen = document.querySelector('.accordion-button.open');
+                    if (currentlyOpen && currentlyOpen !== button) {
+                        currentlyOpen.classList.remove('open');
+                        currentlyOpen.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                    }
+                    
+                    button.classList.toggle('open');
+                    const icon = button.querySelector('span:last-child');
+                    if(button.classList.contains('open')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => observer.observe(section));
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', (e) => {
+                const targetId = e.target.value;
+                if (targetId) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
